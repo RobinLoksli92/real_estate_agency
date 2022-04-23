@@ -1,6 +1,11 @@
+from ctypes.wintypes import PHANDLE
+from email.policy import default
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+
+from phonenumber_field.modelfields import PhoneNumberField
+from phonenumbers import PhoneNumberFormat
 
 
 class Flat(models.Model):
@@ -49,7 +54,8 @@ class Flat(models.Model):
         db_index=True)
 
     new_building = models.NullBooleanField('Новостройка', db_index=True)
-    liked_by = models.ManyToManyField(User, related_name='liked_flat', verbose_name='Кто лайкнул')
+    liked_by = models.ManyToManyField(User, related_name='liked_flat', verbose_name='Кто лайкнул', blank=True)
+    owner_pure_phone = PhoneNumberField(blank=True, verbose_name='Нормализованный номер телефона')
 
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
