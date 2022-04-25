@@ -15,7 +15,7 @@ class Owner(models.Model):
     owner_pure_phone = PhoneNumberField(blank=True, verbose_name='Нормализованный номер телефона')
 
     def __str__(self):
-        return self.owner
+        return self.owner_name
 
 
 class Flat(models.Model):
