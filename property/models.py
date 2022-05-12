@@ -1,18 +1,16 @@
-from ctypes.wintypes import PHANDLE
-from email.policy import default
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
 from phonenumber_field.modelfields import PhoneNumberField
-from phonenumbers import PhoneNumberFormat
 
 
 class Owner(models.Model):
     owner_name = models.CharField('ФИО владельца', max_length=200)
     owners_phonenumber = models.CharField('Номер владельца', max_length=20)
-    flats = models.ManyToManyField('Flat', verbose_name='Квартиры в собственности', related_name='flat_owner')
     owner_pure_phone = PhoneNumberField(blank=True, verbose_name='Нормализованный номер телефона')
+    flats = models.ManyToManyField('Flat', verbose_name='Квартиры в собственности', related_name='flat_owner', db_index=True)
+    
 
     def __str__(self):
         return self.owner_name
