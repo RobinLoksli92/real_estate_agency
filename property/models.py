@@ -17,8 +17,6 @@ class Owner(models.Model):
 
 
 class Flat(models.Model):
-    owner = models.CharField('ФИО владельца', max_length=200)
-    owners_phonenumber = models.CharField('Номер владельца', max_length=20)
     created_at = models.DateTimeField(
         'Когда создано объявление',
         default=timezone.now,
@@ -63,7 +61,6 @@ class Flat(models.Model):
 
     new_building = models.NullBooleanField('Новостройка', db_index=True)
     liked_by = models.ManyToManyField(User, related_name='liked_flat', verbose_name='Кто лайкнул', blank=True)
-    owner_pure_phone = PhoneNumberField(blank=True, verbose_name='Нормализованный номер телефона')
 
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
