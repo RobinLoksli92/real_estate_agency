@@ -25,8 +25,3 @@ class DislikeAdmin(admin.ModelAdmin):
 @admin.register(Owner)
 class OwnerAdmin(admin.ModelAdmin):
     raw_id_fields = ['flats']
-
-
-# admin.site.register(Flat, FlatAdmin)
-# admin.site.register(Dislike, DislikeAdmin)
-# admin.site.register(Owner, OwnerAdmin)
