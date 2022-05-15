@@ -7,12 +7,8 @@ def new_building_check(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
     flats = Flat.objects.all()
     for flat in flats:
-        if flat.construction_year >= 2015:
-            flat.new_building = True
-            flat.save()
-        else:
-            flat.new_building = False
-            flat.save()
+        flat.new_building = flat.construction_year >= 2015
+        flat.save()
 
             
 class Migration(migrations.Migration):
