@@ -70,12 +70,14 @@ class Dislike(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        verbose_name='Кто жаловался'
+        verbose_name='Кто жаловался',
+        related_name='dislikes'
         )
     disliked_flat = models.ForeignKey(
         Flat,
         on_delete=models.CASCADE,
-        verbose_name='Квартира, на которую жаловались'
+        verbose_name='Квартира, на которую жаловались',
+        related_name='dislikes'
         )
     text = models.TextField('Текст жалобы')
 
