@@ -6,7 +6,7 @@ class OwnerInline(admin.TabularInline):
     model = Owner.flats.through
     raw_id_fields = ('owner', )
 
-
+@admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
     inlines = [
         OwnerInline
@@ -18,13 +18,15 @@ class FlatAdmin(admin.ModelAdmin):
     list_filter = ['new_building', 'rooms_number', 'has_balcony']
     raw_id_fields = ['liked_by']
 
+@admin.register(Dislike)
 class DislikeAdmin(admin.ModelAdmin):
     raw_id_fields = ['disliked_flat']
 
+@admin.register(Owner)
 class OwnerAdmin(admin.ModelAdmin):
     raw_id_fields = ['flats']
 
-admin.site.register(Flat, FlatAdmin)
-admin.site.register(Dislike, DislikeAdmin)
-admin.site.register(Owner, OwnerAdmin)
 
+# admin.site.register(Flat, FlatAdmin)
+# admin.site.register(Dislike, DislikeAdmin)
+# admin.site.register(Owner, OwnerAdmin)
