@@ -9,7 +9,7 @@ class Owner(models.Model):
     owner_name = models.CharField('ФИО владельца', max_length=200)
     owners_phonenumber = models.CharField('Номер владельца', max_length=20)
     owner_pure_phone = PhoneNumberField(blank=True, verbose_name='Нормализованный номер телефона')
-    flats = models.ManyToManyField('Flat', verbose_name='Квартиры в собственности', related_name='flat_owner', db_index=True)
+    flats = models.ManyToManyField('Flat', verbose_name='Квартиры в собственности', related_name='flats', db_index=True)
     
 
     def __str__(self):
@@ -60,7 +60,7 @@ class Flat(models.Model):
         db_index=True)
 
     new_building = models.NullBooleanField('Новостройка', db_index=True)
-    liked_by = models.ManyToManyField(User, related_name='liked_flat', verbose_name='Кто лайкнул', blank=True)
+    liked_by = models.ManyToManyField(User, related_name='liked_flats', verbose_name='Кто лайкнул', blank=True)
 
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
