@@ -82,4 +82,3 @@ class Dislike(models.Model):
     text = models.TextField('Текст жалобы')
 
     
-    
